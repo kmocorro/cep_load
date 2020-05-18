@@ -109,7 +109,7 @@ export default function Result(props) {
         </Grid>
       </CardContent>
       {
-        props.costOfGoods ? 
+        props.costOfGoods && props.openAlert == false ? 
           <>
             <CardContent>
               <Grid container>
