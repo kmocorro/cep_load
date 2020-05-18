@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20
   },
   logs: {
-    marginTop: 20
+    marginTop: 20,
   }
 }));
 
@@ -144,7 +144,7 @@ export default function DashData(props) {
                 <MaterialTable
                   icons={tableIcons}
                   columns={[
-                    { title: 'Transaction Date', field: 'transaction_date' },
+                    { title: 'Transaction Date', field: 'transaction_date', defaultSort: 'desc' },
                     { title: 'Canteen', field: 'organization' },
                     { title: 'Staff', field: 'staff' },
                     { title: 'Employee Id', field: 'account_id' },
