@@ -191,11 +191,11 @@ export default function Result(props) {
                       <DialogTitle id="alert-dialog-title">{"Load Confirmation"}</DialogTitle>
                       <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                          A total of ₱{props.selectedCashValue}.00 will be loaded to {props.userData.name}'s account
+                          A total of ₱{props.selectedCashValue} will be loaded to {props.userData.name}'s account
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
-                        <Button onClick={props.handleSubmitLoadAccount} color="secondary" autoFocus variant="contained">
+                        <Button onClick={props.handleSubmitLoadAccount} disabled={props.submitLoadAccountButton} color="secondary" autoFocus variant="contained">
                           Confirm
                         </Button>
                         <Button onClick={props.handleCloseNext} color="default">
