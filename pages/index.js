@@ -200,7 +200,7 @@ function Index(props) {
 
   return (
     <Fragment>
-      <AppBar logout={handleLogout} />
+      <AppBar logout={logout}  />
       <Container maxWidth="sm">
         <div style={{marginTop: 20, marginBottom: 20}}>
         <Typography variant="body2" color="textSecondary" gutterBottom>Select your mode</Typography>

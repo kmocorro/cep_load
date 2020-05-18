@@ -236,7 +236,7 @@ function Index(props) {
 
   return (
     <Fragment>
-      <AppBarPOS logout={handleLogout} />
+      <AppBarPOS logout={logout}  />
       <ScanLayout>
         <ScanPOS employee_number={employee_number} handleEmployeeNumberOnChange={handleEmployeeNumberOnChange} handleEmployeeNumberOnClick={handleEmployeeNumberOnClick} autoFocus={true} />
       </ScanLayout>

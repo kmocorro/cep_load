@@ -235,7 +235,7 @@ function Index(props) {
 
   return (
     <Fragment>
-      <AppBarLoader logout={handleLogout} />
+      <AppBarLoader logout={logout}  />
       <ScanLayout>
         <Scan employee_number={employee_number} handleEmployeeNumberOnChange={handleEmployeeNumberOnChange} handleEmployeeNumberOnClick={handleEmployeeNumberOnClick} />
       </ScanLayout>

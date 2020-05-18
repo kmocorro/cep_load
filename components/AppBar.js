@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarTitle: {
     flex: 1
+  },
+  user: {
+    marginRight: 20
   }
 }));
 
