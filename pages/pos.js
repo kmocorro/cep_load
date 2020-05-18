@@ -19,6 +19,7 @@ function Index(props) {
   //console.log(userData);
   const handleEmployeeNumberOnClick = () => {
     setOpenAlert(false)
+    setSubmitPOSbutton(false);
   }
   const handleEmployeeNumberOnChange = (e) => {
     setEmployee_number(e.target.value);
@@ -90,6 +91,7 @@ function Index(props) {
     setEmployee_number('');
     setCostOfGoods('');
     setOpenAlert(false);
+    setSubmitPOSbutton(false);
   }
 
   // cost of goods ---------------
@@ -178,7 +180,10 @@ function Index(props) {
 
   }
 
+  const [ submitPOSbutton, setSubmitPOSbutton ] = useState(false);
+
   async function handleSubmitPOS(){
+    setSubmitPOSbutton(true);
     setOpenNext(false);
     setOpenBackrop(!openBackdrop)
 
@@ -262,6 +267,7 @@ function Index(props) {
             costOfGoods={costOfGoods}
             handleOnChangeCostOfGoods={handleOnChangeCostOfGoods}
             handleSubmitPOS={handleSubmitPOS}
+            submitPOSbutton={submitPOSbutton}
           />
           :<></>
         :<></>

@@ -143,7 +143,7 @@ export default function Result(props) {
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={props.handleSubmitPOS} color="secondary" autoFocus variant="contained">
+                      <Button onClick={props.handleSubmitPOS} disabled={props.submitPOSbutton} color="secondary" autoFocus variant="contained">
                         Confirm
                       </Button>
                       <Button onClick={props.handleCloseNext} color="default">
