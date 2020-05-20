@@ -36,6 +36,9 @@ export default function Navbar(props) {
         <Typography className={classes.appBarTitle} variant="h6" color="inherit">
           Canteen Electronic Payment
         </Typography>
+        <Typography className={classes.user} >
+          {props.canteenUserData.username}
+        </Typography>
         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={props.logout}>
           <ExitToAppOutlined />
         </IconButton>
