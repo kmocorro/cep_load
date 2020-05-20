@@ -481,7 +481,7 @@ function Index(props) {
 
   return (
     <Fragment>
-      <AppBarDash logout={logout}  />
+      <AppBarDash logout={logout} canteenUserData={canteenUserData} />
       <DashDate
         startDate={startDate}
         handleStartDateChange={handleStartDateChange}
