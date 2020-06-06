@@ -41,15 +41,35 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  profilePicContainer: {
+    width: '80%',
+    margin: 'auto',
+    textAlign: 'center'
+  },
+  profilePic: {
+    width: '50%',
+    height: 'auto',
+    borderRadius: '50%',
+    margin: 'auto'
+  },
 }));
 
 export default function Result(props) {
   const classes = useStyles()
+  const employeeProfilePic = `http://dev-metaspf401.sunpowercorp.com:4000/codecs-img/${props.userData.id}.png` || '';
+  function addDefaultImg(e){
+    e.target.src = `https://robohash.org/${props.userData.id}`
+  }
 
   return (
     <Paper elevation={0}  className={classes.result}>
       <CardContent>
-        <Grid container>
+        <Grid container justify="center">
+          <Grid item xs={12} sm={12} md={12} lg={12}>
+            <div className={classes.profilePicContainer}>
+              <img src={employeeProfilePic} onError={addDefaultImg} className={classes.profilePic}/>
+            </div>
+          </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Typography color="textPrimary" align="center" variant="h2" gutterBottom>{props.userData.name}</Typography>
           </Grid>
