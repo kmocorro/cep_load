@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 export default function ResultsLayout({children}) {
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="lg">
       { children ? children :<Typography>Missing Layout...</Typography>}
     </Container>
   );

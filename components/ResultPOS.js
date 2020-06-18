@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
   profilePicContainer: {
     width: '80%',
     margin: 'auto',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingBottom: 30
   },
   profilePic: {
     width: '50%',
@@ -62,124 +63,127 @@ export default function Result(props) {
   }
 
   return (
-    <Paper elevation={0}  className={classes.result}>
-      <CardContent>
-        <Grid container justify="center">
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <div className={classes.profilePicContainer}>
-              <img src={employeeProfilePic} onError={addDefaultImg} className={classes.profilePic}/>
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Typography color="textPrimary" align="center" variant="h2" gutterBottom>{props.userData.name}</Typography>
-          </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4}>
-            <Typography color="textSecondary" align="left">Balance</Typography>
-            <Typography className={classes.accountValues} align="left" variant="h5" gutterBottom>₱{props.userData.available_balance}</Typography>
-          </Grid>
-          <Grid item xs={6} sm={6} md={4} lg={4}>
-            <Typography color="textSecondary" align="left">Account Name</Typography>
-            <Typography className={classes.accountValues} align="left" variant="h6" gutterBottom>{props.userData.name}</Typography>
-          </Grid>
-          <Grid item xs={6} sm={6} md={4} lg={4}>
-            <Typography color="textSecondary" align="left">Employee Number</Typography>
-            <Typography className={classes.accountValues} align="left" variant="h6" gutterBottom>{props.userData.id}</Typography>
-          </Grid>
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Collapse in={props.openAlert}>
-              {
-                props.responseMessage.status == 'success' ?
-                <Alert 
-                  severity="success"
-                  onClose={props.handleClickCloseAlert}
-                >
-                  <AlertTitle>Success!</AlertTitle>
-                  {props.responseMessage.message}
-                </Alert>
-                :
-                props.responseMessage.status == 'failed' ?
-                <Alert 
-                  severity="error"
-                  onClose={props.handleClickCloseAlert}
-                >
-                  <AlertTitle>Error!</AlertTitle>
-                  {props.responseMessage.message}
-                </Alert>
-                :
-                <Alert 
-                  severity="error"
-                  onClose={props.handleClickCloseAlert}
-                >
-                  <AlertTitle>Error!</AlertTitle>
-                  There's an error during transfer. Check connection and try again.
-                </Alert>
-              }
-            </Collapse>
-          </Grid>
-        </Grid>
-      </CardContent>
-      <Divider />
-      <CardContent>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Typography color="textSecondary" align="left">Enter amount</Typography>
-            <Typography className={classes.accountValues} align="left" variant="h5" gutterBottom>Cost of goods</Typography>
-            <TextField  pattern="[0-9]*" value={props.costOfGoods} onChange={props.handleOnChangeCostOfGoods} fullWidth variant="outlined" type="number" />
-          </Grid>
-        </Grid>
-      </CardContent>
-      {
-        props.costOfGoods && props.openAlert == false ? 
-          <>
-            <CardContent>
-              <Grid container>
-                <Grid item xs={6} sm={6} md={6} lg={6}>
-                  <Typography>Total Amount </Typography>
-                </Grid>
-                <Grid item xs={6} sm={6} md={6} lg={6}>
-                  <Typography className={classes.accountValues} variant="h6"  align="right" gutterBottom>₱{props.costOfGoods}.00</Typography>
-                </Grid>
+    <Grid container justify="center">
+      <Grid item xs={12} sm={12} md={6} lg={6}>
+        <div className={classes.profilePicContainer}>
+          <img src={employeeProfilePic} onError={addDefaultImg} className={classes.profilePic}/>
+        </div>
+        <Typography color="textPrimary" align="center" variant="h2" gutterBottom>{props.userData.name}</Typography>
+      </Grid>
+      <Grid item xs={12} sm={12} md={6} lg={6}>
+        <Paper elevation={0}  className={classes.result}>
+          <CardContent>
+            <Grid container justify="center">
+              <Grid item xs={12} sm={12} md={4} lg={4}>
+                <Typography color="textSecondary" align="left">Balance</Typography>
+                <Typography className={classes.accountValues} align="left" variant="h4" gutterBottom>₱{props.userData.available_balance}</Typography>
               </Grid>
-            </CardContent>
-            <CardActions>
-              <Grid container spacing={1} justify="flex-end">
-                <Grid item>
-                  <Button className={classes.buttonNext} align="right" variant="text" color="secondary" onClick={props.handleSearchCancel} >Cancel</Button>
-                </Grid>
-                <Grid item xs={3} sm={3} md={3} lg={3}>
-                    <Button fullWidth className={classes.buttonNext} align="right" variant="contained" color="secondary" onClick={props.handleClickOpenNext}>
-                      Next
-                    </Button>
-                  <Dialog
-                    open={props.openNext}
-                    onClose={props.handleCloseNext}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                  >
-                    <DialogTitle id="alert-dialog-title">{"Payment Confirmation"}</DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                        A total of ₱{props.costOfGoods}.00 will be deducted to {props.userData.name}'s account
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={props.handleSubmitPOS} disabled={props.submitPOSbutton} color="secondary" autoFocus variant="contained">
-                        Confirm
-                      </Button>
-                      <Button onClick={props.handleCloseNext} color="default">
-                        Cancel
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                  <Backdrop className={classes.backdrop} open={props.openBackdrop}>
-                    <CircularProgress color="inherit" />
-                  </Backdrop>
-                </Grid>
+              <Grid item xs={6} sm={6} md={4} lg={4}>
+                <Typography color="textSecondary" align="left">Account Name</Typography>
+                <Typography className={classes.accountValues} align="left" variant="h5" gutterBottom>{props.userData.name}</Typography>
               </Grid>
-            </CardActions>
-          </>
-        : <></>
-      }
-    </Paper>
+              <Grid item xs={6} sm={6} md={4} lg={4}>
+                <Typography color="textSecondary" align="left">Employee Number</Typography>
+                <Typography className={classes.accountValues} align="left" variant="h5" gutterBottom>{props.userData.id}</Typography>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12} lg={12}>
+                <Collapse in={props.openAlert}>
+                  {
+                    props.responseMessage.status == 'success' ?
+                    <Alert 
+                      severity="success"
+                      onClose={props.handleClickCloseAlert}
+                    >
+                      <AlertTitle>Success!</AlertTitle>
+                      {props.responseMessage.message}
+                    </Alert>
+                    :
+                    props.responseMessage.status == 'failed' ?
+                    <Alert 
+                      severity="error"
+                      onClose={props.handleClickCloseAlert}
+                    >
+                      <AlertTitle>Error!</AlertTitle>
+                      {props.responseMessage.message}
+                    </Alert>
+                    :
+                    <Alert 
+                      severity="error"
+                      onClose={props.handleClickCloseAlert}
+                    >
+                      <AlertTitle>Error!</AlertTitle>
+                      There's an error during transfer. Check connection and try again.
+                    </Alert>
+                  }
+                </Collapse>
+              </Grid>
+            </Grid>
+          </CardContent>
+          <Divider />
+          <CardContent>
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={12} md={12} lg={12}>
+                <Typography color="textSecondary" align="left">Enter amount</Typography>
+                <Typography className={classes.accountValues} align="left" variant="h5" gutterBottom>Cost of goods</Typography>
+                <TextField  pattern="[0-9]*" value={props.costOfGoods} onChange={props.handleOnChangeCostOfGoods} fullWidth variant="outlined" type="number" />
+              </Grid>
+            </Grid>
+          </CardContent>
+          {
+            props.costOfGoods && props.openAlert == false ? 
+              <>
+                <CardContent>
+                  <Grid container>
+                    <Grid item xs={6} sm={6} md={6} lg={6}>
+                      <Typography>Total Amount </Typography>
+                    </Grid>
+                    <Grid item xs={6} sm={6} md={6} lg={6}>
+                      <Typography className={classes.accountValues} variant="h4"  align="right" gutterBottom>₱{props.costOfGoods}.00</Typography>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+                <CardActions>
+                  <Grid container spacing={1} justify="flex-end">
+                    <Grid item>
+                      <Button className={classes.buttonNext} align="right" variant="text" color="secondary" onClick={props.handleSearchCancel} >Cancel</Button>
+                    </Grid>
+                    <Grid item xs={3} sm={3} md={3} lg={3}>
+                        <Button fullWidth className={classes.buttonNext} align="right" variant="contained" color="secondary" onClick={props.handleClickOpenNext}>
+                          Next
+                        </Button>
+                      <Dialog
+                        open={props.openNext}
+                        onClose={props.handleCloseNext}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                      >
+                        <DialogTitle id="alert-dialog-title">{"Payment Confirmation"}</DialogTitle>
+                        <DialogContent>
+                          <DialogContentText id="alert-dialog-description">
+                            A total of ₱{props.costOfGoods}.00 will be deducted to {props.userData.name}'s account
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={props.handleSubmitPOS} disabled={props.submitPOSbutton} color="secondary" autoFocus variant="contained">
+                            Confirm
+                          </Button>
+                          <Button onClick={props.handleCloseNext} color="default">
+                            Cancel
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                      <Backdrop className={classes.backdrop} open={props.openBackdrop}>
+                        <CircularProgress color="inherit" />
+                      </Backdrop>
+                    </Grid>
+                  </Grid>
+                </CardActions>
+              </>
+            : <></>
+          }
+        </Paper>
+      </Grid>
+    </Grid>
+    
   );
 }
