@@ -107,6 +107,18 @@ export default function Result(props) {
           </Grid>
           <Grid item xs={3} sm={3} md={3} lg={3}>
             {
+              props.selectCash20 ?
+              <Button fullWidth className={classes.button} variant="contained" color="secondary" onClick={props.handleCashOnToggle20}>
+                <Typography className={classes.accountValues}  variant="h5">₱20</Typography>
+              </Button>
+              :
+              <Button fullWidth className={classes.button} variant="outlined" onClick={props.handleCashOnToggle20}>
+                <Typography className={classes.accountValues}  variant="h5">₱20</Typography>
+              </Button>
+            }
+          </Grid>
+          <Grid item xs={2} sm={2} md={2} lg={2}>
+            {
               props.selectCash100 ?
               <Button fullWidth className={classes.button} variant="contained" color="secondary" onClick={props.handleCashOnToggle100}>
                 <Typography className={classes.accountValues}  variant="h5">₱100</Typography>
@@ -117,7 +129,7 @@ export default function Result(props) {
               </Button>
             }
           </Grid>
-          <Grid item xs={3} sm={3} md={3} lg={3}>
+          <Grid item xs={2} sm={2} md={2} lg={2}>
             {
               props.selectCash200 ?
               <Button fullWidth className={classes.button} variant="contained" color="secondary" onClick={props.handleCashOnToggle200}>
@@ -129,7 +141,7 @@ export default function Result(props) {
               </Button>
             }
           </Grid>
-          <Grid item xs={3} sm={3} md={3} lg={3}>
+          <Grid item xs={2} sm={2} md={2} lg={2}>
             {
               props.selectCash500 ?
               <Button fullWidth className={classes.button} variant="contained" color="secondary" onClick={props.handleCashOnToggle500}>

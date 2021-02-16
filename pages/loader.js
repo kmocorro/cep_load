@@ -25,6 +25,7 @@ function Index(props) {
     setEmployee_number(e.target.value);
     setResponseMessage('');
     setSelectedCashValue('');
+    setSelectCash20(false);
     setSelectCash100(false);
     setSelectCash200(false);
     setSelectCash500(false);
@@ -34,6 +35,7 @@ function Index(props) {
     setEmployee_number('');
     setResponseMessage('');
     setSelectedCashValue('');
+    setSelectCash20(false);
     setSelectCash100(false);
     setSelectCash200(false);
     setSelectCash500(false);
@@ -41,13 +43,30 @@ function Index(props) {
   }
 
   const [ selectedCashValue, setSelectedCashValue ] = useState('');
+  // for 20 pesos...
+  const [ selectCash20, setSelectCash20 ] = useState(false);
+  //
   const [ selectCash100, setSelectCash100 ] = useState(false);
   const [ selectCash200, setSelectCash200 ] = useState(false);
   const [ selectCash500, setSelectCash500 ] = useState(false);
   const [ selectCash1000, setSelectCash1000 ] = useState(false);
 
+  // for 20 pesos...
+  const handleCashOnToggle20 = () => {
+    setSelectedCashValue('20')
+    setSelectCash20(!selectCash20)
+    setSelectCash100(false)
+    setSelectCash200(false)
+    setSelectCash500(false)
+    setSelectCash1000(false)
+    if(selectCash20){
+      setSelectedCashValue('')
+    }
+  }
+
   const handleCashOnToggle100 = () => {
     setSelectedCashValue('100')
+    setSelectCash20(false)
     setSelectCash100(!selectCash100)
     setSelectCash200(false)
     setSelectCash500(false)
@@ -58,6 +77,7 @@ function Index(props) {
   }
   const handleCashOnToggle200 = () => {
     setSelectedCashValue('200')
+    setSelectCash20(false)
     setSelectCash100(false)
     setSelectCash200(!selectCash200)
     setSelectCash500(false)
@@ -68,6 +88,7 @@ function Index(props) {
   }
   const handleCashOnToggle500 = () => {
     setSelectedCashValue('500')
+    setSelectCash20(false)
     setSelectCash100(false)
     setSelectCash200(false)
     setSelectCash500(!selectCash500)
@@ -78,6 +99,7 @@ function Index(props) {
   }
   const handleCashOnToggle1000 = () => {
     setSelectedCashValue('1000')
+    setSelectCash20(false)
     setSelectCash100(false)
     setSelectCash200(false)
     setSelectCash500(false)
@@ -103,6 +125,7 @@ function Index(props) {
     setEmployee_number('');
     setResponseMessage('');
     setSelectedCashValue('');
+    setSelectCash20(false)
     setSelectCash100(false);
     setSelectCash200(false);
     setSelectCash500(false);
@@ -119,6 +142,7 @@ function Index(props) {
   const handleClickCloseAlert = () => {
     setEmployee_number('');
     setSelectedCashValue(''); 
+    setSelectCash20(false)
     setSelectCash100(false);
     setSelectCash200(false);
     setSelectCash500(false);
@@ -245,11 +269,13 @@ function Index(props) {
           userData.id == employee_number  ?  // will be replaced soon... with data from the server.
           <Result 
             userData={userData}
+            selectCash20={selectCash20}
             selectCash100={selectCash100}
             selectCash200={selectCash200}
             selectCash500={selectCash500}
             selectCash1000={selectCash1000}
             handleSearchCancel={handleSearchCancel}
+            handleCashOnToggle20={handleCashOnToggle20}
             handleCashOnToggle100={handleCashOnToggle100}
             handleCashOnToggle200={handleCashOnToggle200}
             handleCashOnToggle500={handleCashOnToggle500}
